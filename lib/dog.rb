@@ -92,6 +92,16 @@ class Dog
         end
         new_dog
     end
+    
+    def self.find_by_name(name)
+      sql = <<-SQL
+        SELECT * FROM dogs
+        WHERE name = ? AND breed = ?
+        SQL
+  
+        dog = DB[:conn].execute(sql, name, breed).first
+
+    end 
 
   
 end  #end of the Dog Class 
